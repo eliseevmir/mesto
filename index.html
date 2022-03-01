@@ -7,12 +7,13 @@
     <title>Mesto</title>
     <link rel="stylesheet" href="./page/index.css" />
   </head>
-  <body class="body">
+  <body>
     <div class="root">
       <header class="header">
         <img src="./image/logo.svg" alt="Логотип" class="header__logo" />
       </header>
-      <main class="main">
+
+      <main>
         <section class="profile">
           <div class="profile__item">
             <img
@@ -22,24 +23,103 @@
             />
             <div class="profile__info">
               <h1 class="profile__title">Жак-Ив Кусто</h1>
-              <img
-                src="./image/Edit Button.svg"
-                alt="Кнопка редактирования"
-                class="profile__button-create"
-              />
+              <button class="profile__button-create"></button>
               <p class="profile__subtitle">Исследователь океана</p>
             </div>
           </div>
-          <img
-            src="./image/Add Button.png"
-            alt="Кнопка добавления"
-            class="profile__button-add"
-          />
+          <button class="profile__button-add"></button>
         </section>
 
-        <section class="elements"></section>
+        <section class="elements">
+          <ul class="cards">
+            <li class="cards__item">
+              <img
+                src="./image/Peterburg.jpg"
+                alt="Санкт-Петербург"
+                class="cards__image"
+              />
+              <div class="cards__description">
+                <p class="cards__text">Санкт-Петербург</p>
+                <img
+                  src="./image/Group__like.svg"
+                  alt="Сердечко"
+                  class="cards__like"
+                />
+              </div>
+            </li>
+            <li class="cards__item">
+              <img src="./image/sochi.jpg" alt="Сочи" class="cards__image" />
+              <div class="cards__description">
+                <p class="cards__text">Сочи</p>
+                <img
+                  src="./image/Group__like.svg"
+                  alt="Сердечко"
+                  class="cards__like"
+                />
+              </div>
+            </li>
+            <li class="cards__item">
+              <img
+                src="./image/Bailkal.jpg"
+                alt="Байкал"
+                class="cards__image"
+              />
+              <div class="cards__description">
+                <p class="cards__text">Байкал</p>
+                <img
+                  src="./image/Group__like.svg"
+                  alt="Сердечко"
+                  class="cards__like"
+                />
+              </div>
+            </li>
+            <li class="cards__item">
+              <img src="./image/Dombai.png" alt="Домбай" class="cards__image" />
+              <div class="cards__description">
+                <p class="cards__text">Домбай</p>
+                <img
+                  src="./image/Group__like.svg"
+                  alt="Сердечко"
+                  class="cards__like"
+                />
+              </div>
+            </li>
+            <li class="cards__item">
+              <img
+                src="./image/Elbrus.png"
+                alt="Гора Эльбрус"
+                class="cards__image"
+              />
+              <div class="cards__description">
+                <p class="cards__text">Гора Эльбрус</p>
+                <img
+                  src="./image/Group__like.svg"
+                  alt="Сердечко"
+                  class="cards__like"
+                />
+              </div>
+            </li>
+            <li class="cards__item">
+              <img
+                src="./image/karachaevsk.jpg"
+                alt="Карачаево-Черкессия"
+                class="cards__image"
+              />
+              <div class="cards__description">
+                <p class="cards__text">Карачаево-Черкессия</p>
+                <img
+                  src="./image/Group__like.svg"
+                  alt="Сердечко"
+                  class="cards__like"
+                />
+              </div>
+            </li>
+          </ul>
+        </section>
       </main>
-      <footer class="footer"></footer>
+      <footer>
+        <p class="footer">&copy; 2022 Mesto Russia</p>
+      </footer>
     </div>
   </body>
 </html>

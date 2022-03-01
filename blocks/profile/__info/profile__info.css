@@ -5,3 +5,10 @@
   align-items: center;
   gap: 16px 18px;
 }
+
+@media screen and (max-width: 900px) {
+  .profile__info {
+    margin: 0;
+    padding-top: 26px;
+  }
+}
