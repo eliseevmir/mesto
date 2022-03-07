@@ -1,5 +1,5 @@
 .cards__text {
-  font-family: Inter, Arial, Helvetica, sans-serif;
+  font-family: "Inter", Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: 900;
   font-size: 24px;
@@ -9,5 +9,5 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  width: min-content;
+  max-width: 224px;
 }
