@@ -5,6 +5,7 @@
   height: 19px;
   background-repeat: no-repeat;
   transition: opacity 0.3s ease;
+  border: none;
 }
 
 .cards__like:hover {
