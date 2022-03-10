@@ -10,14 +10,12 @@ let popupInputName = document.querySelector("input[name ='user-name']");
 let popupInputInfo = document.querySelector("input[name ='user-info']");
 
 function openPopup () {
-  popupInputName.setAttribute("value", formName.innerHTML);
-  popupInputInfo.setAttribute("value", formInfo.innerHTML);
+  popupInputName.setAttribute("value", formName.textContent);
+  popupInputInfo.setAttribute("value", formInfo.textContent);
   popup.classList.add("popup_opened");
 };
 
 function closePopup () {
-  popupInputName.value = formName.innerHTML;
-  popupInputInfo.value = formInfo.innerHTML;
   popup.classList.remove("popup_opened");
 };
 
