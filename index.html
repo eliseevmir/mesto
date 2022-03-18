@@ -40,6 +40,7 @@
               <div class="cards__description">
                 <h2 class="cards__text">Санкт-Петербург</h2>
                 <button class="cards__like"></button>
+                <button class="cards__trash"></button>
               </div>
             </li>
             <li class="cards__item">
@@ -128,13 +129,13 @@
           <form action="#" name="profile" class="popup__form popup__form-cards">
             <input
               type="text"
-              name="user-name"
+              name="name-card"
               placeholder="Название"
               class="popup__input"
             />
             <input
               type="text"
-              name="user-info"
+              name="link-card"
               placeholder="Ссылка на картинку"
               class="popup__input"
             />
@@ -144,27 +145,18 @@
         </div>
       </div>
       <!-- Попап открытия карточек -->
-      <!-- <div class="popup">
-        <div class="popup__container">
-          <h2 class="popup__title">Редактировать профиль</h2>
-          <form action="#" name="profile" class="popup__form">
-            <input
-              type="text"
-              name="user-name"
-              placeholder="Имя"
-              class="popup__input"
-            />
-            <input
-              type="text"
-              name="user-info"
-              placeholder="О себе"
-              class="popup__input"
-            />
-            <button class="popup__button" type="submit">Сохранить</button>
-          </form>
-          <button class="popup__close"></button>
+      <div class="popup popup_image">
+        <div class="popup__image">
+          <img
+            src="./image/Peterburg.jpg"
+            alt="Домбай"
+            class="popup__image-scale"
+          />
+          <p class="popup__image-text">Санкт-Петербург</p>
+          <button class="popup__close popup__close-image"></button>
         </div>
-      </div> -->
+      </div>
+
       <template class="template__cards">
         <li class="cards__item">
           <img
