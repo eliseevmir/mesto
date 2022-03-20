@@ -39,3 +39,5 @@
 @import url(../blocks/popup/__image/popup__image.css);
 @import url(../blocks/popup/__image/popup__image-scale.css);
 @import url(../blocks/popup/__image/popup__image-text.css);
+
+@import url(../blocks/cards/__trash/cards__trash.css);

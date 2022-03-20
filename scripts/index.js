@@ -5,8 +5,6 @@ const closePopupProfileBtn = document.querySelector(".popup__close-profile");
 const closePopupCardsBtn = document.querySelector(".popup__close-cards");
 const closePopupImageBtn = document.querySelector(".popup__close-image");
 
-const cardsLikeBtn = document.querySelector(".cards__like");
-
 const popupFormProfile = document.querySelector(".popup__form-profile");
 const popupFormCards = document.querySelector(".popup__form-cards");
 
@@ -97,17 +95,22 @@ function newCard (obj) {
   cardsItem.querySelector(".cards__image").alt = obj.name;
   cardsItem.querySelector(".cards__text").textContent = obj.name;
 
-  const likeBtn = cardsItem.querySelector(".cards__like");
-  likeBtn.addEventListener("click", ()=> {
-    like(likeBtn);
-  })
+  const cardsLikeBtn = cardsItem.querySelector(".cards__like");
+  cardsLikeBtn.addEventListener("click", ()=> {
+    like(cardsLikeBtn);
+  });
 
   const imageCard = cardsItem.querySelector(".cards__image");
   imageCard.addEventListener("click", ()=> {
     popupImage.querySelector(".popup__image-scale").src = obj.link;
     popupImage.querySelector(".popup__image-text").textContent = obj.name;
     openPopup(popupImage);
-  })
+  });
+
+  const cardsDeletBtn = cardsItem.querySelector(".cards__trash");
+  cardsDeletBtn.addEventListener("click", ()=>{
+    deletCard(cardsDeletBtn);
+  });
 
   return cardsItem;
 };
@@ -125,12 +128,43 @@ function addNewCard () {
   closePopup(popupCardsAdd);
 };
 
-popupFormCards.addEventListener("submit", addNewCard);
-
 function like (arg){
   arg.classList.toggle("cards__like_active");
 };
 
+function deletCard (arg) {
+  arg.closest(".cards__item").remove();
+}
+
 closePopupImageBtn.addEventListener("click",()=>{
   closePopup(popupImage)
+});
+
+popupFormCards.addEventListener("submit", addNewCard);
+
+
+const allCards = document.querySelectorAll(".cards__item");
+let arr = Array.from(allCards);
+let arrCard = arr.slice(0,6);
+
+arrCard.forEach(item => {
+
+  const likeCard =item.querySelector(".cards__like");
+  likeCard.addEventListener("click", ()=> {like(likeCard)});
+
+  const imageCards = item.querySelector(".cards__image");
+  imageCards.addEventListener("click", ()=> {
+    popupImage.querySelector(".popup__image-scale").src = item.querySelector(".cards__image").src;
+    popupImage.querySelector(".popup__image-text").textContent = item.querySelector(".cards__text").textContent;
+    openPopup(popupImage)
+  });
+
+  const buttonTrash = document.createElement("button");
+  buttonTrash.classList.add("cards__trash")
+  item.append(buttonTrash);
+  console.log(buttonTrash)
+  buttonTrash.addEventListener("click",()=>{
+    deletCard(buttonTrash);
+  });
+
 });
