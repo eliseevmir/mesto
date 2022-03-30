@@ -83,12 +83,12 @@ function addNewCard (event) {
   closePopup(popupCardsAdd);
 };
 
-function like (arg){
-  arg.classList.toggle("cards__like_active");
+function like (event) {
+   event.target.classList.toggle("cards__like_active");
 };
 
-function deletCard (arg) {
-  arg.closest(".cards__item").remove();
+function deletCard (event) {
+  event.target.closest(".cards__item").remove();
 };
 
 function fillingPopuoImage (arg) {
@@ -106,18 +106,14 @@ function createCard (obj) {
   cardsItem.querySelector(".cards__text").textContent = obj.name;
 
   const cardsLikeBtn = cardsItem.querySelector(".cards__like");
-  cardsLikeBtn.addEventListener("click", ()=> {
-    like(cardsLikeBtn);
-  });
+  cardsLikeBtn.addEventListener("click", like);
 
   cardImage.addEventListener("click", ()=> {
     fillingPopuoImage(obj);
     openPopup(popupImage);
   });
     const cardsDeleteBtn = cardsItem.querySelector(".cards__trash");
-    cardsDeleteBtn.addEventListener("click", ()=>{
-    deletCard(cardsDeleteBtn);
-  });
+    cardsDeleteBtn.addEventListener("click", deletCard);
 
   return cardsItem;
 };
@@ -128,7 +124,7 @@ createProfileBtn.addEventListener("click", ()=> {
   openPopup(popupCreateProfile);
 });
 
-closePopupProfileBtn.addEventListener("click", ()=>{
+closePopupProfileBtn.addEventListener("click", ()=> {
   closePopup(popupCreateProfile);
 });
 
@@ -142,7 +138,7 @@ closePopupCardsBtn.addEventListener("click", ()=> {
   closePopup(popupCardsAdd)
 });
 
-closePopupImageBtn.addEventListener("click",()=>{
+closePopupImageBtn.addEventListener("click",()=> {
   closePopup(popupImage)
 });
 
