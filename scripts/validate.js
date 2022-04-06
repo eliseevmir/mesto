@@ -64,8 +64,10 @@ function hasValidate(inputAll) {
 function toggleButton(button, inputAll, inactiveButton) {
   if (hasValidate(inputAll)) {
     button.classList.add(inactiveButton);
+    button.setAttribute("disabled", "disabled");
   } else {
     button.classList.remove(inactiveButton);
+    button.removeAttribute("disabled");
   };
 };
 
