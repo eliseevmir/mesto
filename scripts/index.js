@@ -24,15 +24,14 @@ const initialCards = [
     link: 'https://images.unsplash.com/photo-1611859266238-4b98091d9d9b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=464&q=80'
   }
 ];
-const formsPage = document.forms
+const formsPage = document.forms;
 const createCardFormBtn = formsPage.cards.querySelector(".popup__button");
 
 const createProfileBtn = document.querySelector(".profile__button-create");
 const addCardsBtn = document.querySelector(".profile__button-add");
 
-const closePopupProfileBtn = document.querySelector(".popup__close-profile");
-const closePopupCardsBtn = document.querySelector(".popup__close-cards");
-const closePopupImageBtn = document.querySelector(".popup__close-image");
+const popupAll = document.querySelectorAll(".popup");
+const templateCards = document.querySelector(".template__cards").content;
 
 const popupFormProfile = document.querySelector(".popup__form-profile");
 const popupFormCards = document.querySelector(".popup__form-cards");
@@ -59,19 +58,16 @@ const cards = document.querySelector(".cards");
 cards.append(...(initialCards.map(createCard)));
 
 function openPopup (arg) {
-  clearErrorForm(arg)
   arg.classList.add("popup_opened");
-  arg.addEventListener("click", (event)=> {
-  clickOutPopup(event, arg)
-  });
+  document.addEventListener("keydown", closeByEscape);
+  arg.addEventListener("mousedown", clickOut)
 };
 
 
 function closePopup (arg) {
   arg.classList.remove("popup_opened");
-  arg.removeEventListener("click", (event)=> {
-  clickOutPopup(event, arg)
-  });
+  document.removeEventListener("keydown", closeByEscape);
+  arg.removeEventListener("mousedown", clickOut)
 };
 
 
@@ -92,6 +88,7 @@ function addNewCard (event) {
   cards.prepend(createCard(cardInfo));
   event.target.reset();
   createCardFormBtn.classList.add("popup__button_disabled");
+  createCardFormBtn.setAttribute("disabled", "disabled");
   closePopup(popupCardsAdd);
 };
 
@@ -114,7 +111,6 @@ function fillingPopuoImage (arg) {
 
 
 function createCard (obj) {
-  const templateCards = document.querySelector(".template__cards").content;
   const cardsItem = templateCards.querySelector(".cards__item").cloneNode(true);
   const cardImage = cardsItem.querySelector(".cards__image");
   cardImage.src = obj.link;
@@ -127,7 +123,6 @@ function createCard (obj) {
   cardImage.addEventListener("click", ()=> {
     fillingPopuoImage(obj);
     openPopup(popupImage);
-    document.addEventListener("keydown", handleEscUp);
   });
     const cardsDeleteBtn = cardsItem.querySelector(".cards__trash");
     cardsDeleteBtn.addEventListener("click", deletCard);
@@ -136,21 +131,18 @@ function createCard (obj) {
 };
 
 
-function handleEscUp (event) {
+function closeByEscape (event) {
   if (event.key === "Escape") {
     const activePopup = document.querySelector('.popup_opened');
-    document.removeEventListener("keydown", handleEscUp);
     closePopup(activePopup);
   };
 };
 
-
-function clickOutPopup (event, arg) {
+function clickOut (event) {
   if (event.target.classList.contains("popup") || event.target.classList.contains("popup__close")) {
-
-    closePopup(arg);
-  };
-
+    const activePopup = document.querySelector(".popup_opened");
+    closePopup(activePopup);
+    };
 };
 
 
@@ -162,6 +154,7 @@ function clearErrorForm (arg) {
     const spanError = arg.querySelector(`.${item.id}-error`);
     if (item.value === "" || !item.validity.valid) {
       buttonFormActive.classList.add("popup__button_disabled");
+      buttonFormActive.setAttribute("disabled", "disabled");
     } else {
       buttonFormActive.classList.remove("popup__button_disabled");
       item.classList.remove("popup__input_type_error");
@@ -170,16 +163,17 @@ function clearErrorForm (arg) {
   });
 };
 
+
 createProfileBtn.addEventListener("click", ()=> {
   popupInputName.value = formName.textContent;
   popupInputInfo.value = formInfo.textContent;
+  clearErrorForm(popupFormProfile);
   openPopup(popupCreateProfile);
-  document.addEventListener("keydown", handleEscUp);
 });
 
 addCardsBtn.addEventListener("click", ()=> {
+  clearErrorForm(popupFormCards);
   openPopup(popupCardsAdd);
-  document.addEventListener("keydown", handleEscUp);
 });
 
 popupFormProfile.addEventListener("submit", handleProfileFormSubmit);
