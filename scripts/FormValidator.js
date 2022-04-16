@@ -44,19 +44,34 @@ export class FormValidator {
     };
   };
 
-  _setEventListener() {
-    const inputForm = Array.from(this.formSelector.querySelectorAll(this.inputSelector));
-    const buttonForm = this.formSelector.querySelector(this.submitButtonSelector);
 
-    inputForm.forEach(inputElement => {
+  _setEventListener() {
+    this._inputForm.forEach(inputElement => {
       inputElement.addEventListener("input", () => {
         this._isValid(inputElement);
-        this._toggleButton(buttonForm, inputForm);
+        this._toggleButton(this._buttonForm, this._inputForm);
       });
     });
   };
 
   enableValidation() {
+    this._inputForm = Array.from(this.formSelector.querySelectorAll(this.inputSelector));
+    this._buttonForm = this.formSelector.querySelector(this.submitButtonSelector);
     this._setEventListener();
+  };
+
+
+  resetValidation() {
+    this._inputForm.forEach (inputElement => {
+      const spanError = this.formSelector.querySelector(`.${inputElement.id}-error`);
+      if (!inputElement.validity.valid) {
+        this._buttonForm.classList.add(this.inactiveButtonClass);
+        this._buttonForm.setAttribute("disabled", "disabled");
+      } else {
+        this._buttonForm.classList.remove(this.inactiveButtonClass);
+        inputElement.classList.remove(this.inputErrorClass);
+        spanError.classList.remove(this.errorClass);
+       };
+    });
   };
 };
