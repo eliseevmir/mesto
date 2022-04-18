@@ -43,6 +43,8 @@ const createProfileBtn = document.querySelector(".profile__button-create");
 const addCardsBtn = document.querySelector(".profile__button-add");
 
 const popupImage = document.querySelector(".popup_image");
+const popupImageScale = popupImage.querySelector(".popup__image-scale");
+const popupImageScaleText = popupImage.querySelector(".popup__image-text");
 const popupFormProfile = document.querySelector(".popup__form-profile");
 const popupFormCards = document.querySelector(".popup__form-cards");
 
@@ -60,9 +62,9 @@ const cards = document.querySelector(".cards");
 
 
 function handleCardClick (name, link) {
-  popupImage.querySelector(".popup__image-scale").src = link;
-  popupImage.querySelector(".popup__image-scale").alt = name;
-  popupImage.querySelector(".popup__image-text").textContent = name;
+  popupImageScale.src = link;
+  popupImageScale.alt = name;
+  popupImageScaleText.textContent = name;
   openPopup(popupImage);
 };
 

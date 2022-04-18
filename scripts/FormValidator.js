@@ -34,44 +34,37 @@ export class FormValidator {
     });
   };
 
-  _toggleButton(buttonForm, inputForm) {
-    if (this._hasValidate(inputForm)) {
-      buttonForm.classList.add(this.inactiveButtonClass);
-      buttonForm.setAttribute("disabled", "disabled");
+  _toggleButton() {
+    if (this._hasValidate(this._formInputs)) {
+      this._buttonForm.classList.add(this.inactiveButtonClass);
+      this._buttonForm.setAttribute("disabled", "disabled");
     } else {
-      buttonForm.classList.remove(this.inactiveButtonClass);
-      buttonForm.removeAttribute("disabled");
+      this._buttonForm.classList.remove(this.inactiveButtonClass);
+      this._buttonForm.removeAttribute("disabled");
     };
   };
 
 
   _setEventListener() {
-    this._inputForm.forEach(inputElement => {
+    this._formInputs.forEach(inputElement => {
       inputElement.addEventListener("input", () => {
         this._isValid(inputElement);
-        this._toggleButton(this._buttonForm, this._inputForm);
+        this._toggleButton();
       });
     });
   };
 
   enableValidation() {
-    this._inputForm = Array.from(this.formSelector.querySelectorAll(this.inputSelector));
+    this._formInputs = Array.from(this.formSelector.querySelectorAll(this.inputSelector));
     this._buttonForm = this.formSelector.querySelector(this.submitButtonSelector);
     this._setEventListener();
   };
 
+   resetValidation() {
+      this._toggleButton();
 
-  resetValidation() {
-    this._inputForm.forEach (inputElement => {
-      const spanError = this.formSelector.querySelector(`.${inputElement.id}-error`);
-      if (!inputElement.validity.valid) {
-        this._buttonForm.classList.add(this.inactiveButtonClass);
-        this._buttonForm.setAttribute("disabled", "disabled");
-      } else {
-        this._buttonForm.classList.remove(this.inactiveButtonClass);
-        inputElement.classList.remove(this.inputErrorClass);
-        spanError.classList.remove(this.errorClass);
-       };
-    });
+      this._formInputs.forEach((inputElement) => {
+        this._hideInputError(inputElement)
+      });
   };
 };
