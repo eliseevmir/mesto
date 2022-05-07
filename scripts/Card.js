@@ -35,7 +35,6 @@ export class Card {
     });
   };
 
-
   generateCard() {
     this._elementCard = this._getCardElement();
     this._cardImage = this._elementCard.querySelector(".cards__image");
