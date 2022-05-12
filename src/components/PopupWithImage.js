@@ -1,21 +1,19 @@
 import { Popup } from "./Popup.js";
 
 export class PopupWithImage extends Popup {
-  constructor(_popupSelector, textImage, linkImage) {
+  constructor(_popupSelector) {
     super(_popupSelector);
-    this._textImage = textImage;
-    this._linkImage = linkImage;
-  };
+  }
 
-  open() {
+  open(textImage, linkImage) {
+    super.setEventListeners();
+
     this._popupSelector.classList.add("popup_opened");
-    const image = this._popupSelector.querySelector(".popup__image-scale");
-    const textImage = this._popupSelector.querySelector(".popup__image-text");
-    image.src = this._linkImage;
-    textImage.textContent = this._textImage;
-
+    const imageScale = this._popupSelector.querySelector(".popup__image-scale");
+    const imageText = this._popupSelector.querySelector(".popup__image-text");
+    imageScale.src = linkImage;
+    imageText.textContent = textImage;
 
     document.addEventListener("keydown", this._handleEscClose);
-    this._popupSelector.addEventListener("mousedown", this.setEventListeners);
-  };
-};
+  }
+}
