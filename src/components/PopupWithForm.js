@@ -9,7 +9,12 @@ export class PopupWithForm extends Popup {
   _getInputValues() {
     this.form = this._popupSelector.querySelector(".popup__form");
     this.input = Array.from(this.form.querySelectorAll(".popup__input"));
-    return this.input;
+    this.inputValues = {};
+
+    this.input.forEach(element => {
+      this.inputValues[element.name] = element.value;
+    });
+    return this.inputValues;
   };
 
   setEventListeners = (event) => {

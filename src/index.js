@@ -1,9 +1,10 @@
-import { Card } from "./card.js";
-import { FormValidator } from "./FormValidator.js";
-import { Section } from "./Sections.js";
-import { PopupWithImage } from "./PopupWithImage.js";
-import { PopupWithForm } from "./PopupWithForm.js";
-import { UserInfo } from "./UserInfo.js";
+import { Card } from "./components/Card.js";
+import { FormValidator } from "./components/FormValidator.js";
+import { Section } from "./components/Sections.js";
+import { PopupWithImage } from "./components/PopupWithImage.js";
+import { PopupWithForm } from "./components/PopupWithForm.js";
+import { UserInfo } from "./components/UserInfo.js";
+import "../page/index.css";
 
 const initialCards = [
   {
@@ -56,20 +57,20 @@ const cards = document.querySelector(".cards");
 
 const userProfileCard = new UserInfo({userName: formName, userInfo: formInfo});
 
-const popupAddNewCard = new PopupWithForm(popupCardsAdd, (event) => {
+const addNewCardPopup = new PopupWithForm(popupCardsAdd, (event) => {
   event.preventDefault();
 
-  const dataCard = Array.from(popupAddNewCard._getInputValues());
+  const dataCard = addNewCardPopup._getInputValues();
   const cardInfo = {
-    name: dataCard[0].value,
-    link: dataCard[1].value,
+    name: dataCard["title-card"],
+    link: dataCard["link-card"],
   };
   const card = new Card (cardInfo, ".template__cards", handleCardClick);
   const cardElement = card.generateCard();
   cards.prepend(cardElement);
 
   event.target.reset();
-  popupAddNewCard.close();
+  addNewCardPopup.close();
 });
 
 const createProfilePopup = new PopupWithForm(popupCreateProfile, (event) => {
@@ -114,7 +115,7 @@ enableValidation(validSet);
 
 addCardsBtn.addEventListener("click", ()=> {
   formValidators["cards"].resetValidation();
-  popupAddNewCard.open();
+  addNewCardPopup.open();
 });
 
 
@@ -125,6 +126,3 @@ createProfileBtn.addEventListener("click", ()=> {
   formValidators["profile"].resetValidation();
   createProfilePopup.open();
 });
-
-
-

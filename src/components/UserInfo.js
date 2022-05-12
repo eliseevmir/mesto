@@ -11,8 +11,8 @@ export class UserInfo {
     };
   };
 
-  setUserInfo(dataForm) {
-    this._userName.textContent = dataForm[0].value;
-    this._userInfo.textContent = dataForm[1].value;
+  setUserInfo({["user-name"]: userName, ["user-info"]:userInfo}) {
+    this._userName.textContent = userName;
+    this._userInfo.textContent = userInfo;
   };
 };
