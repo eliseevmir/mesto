@@ -4,7 +4,7 @@ import { Section } from "./components/Sections.js";
 import { PopupWithImage } from "./components/PopupWithImage.js";
 import { PopupWithForm } from "./components/PopupWithForm.js";
 import { UserInfo } from "./components/UserInfo.js";
-import "../page/index.css";
+import "./index.css";
 
 const initialCards = [
   {
