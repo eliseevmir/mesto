@@ -6,14 +6,11 @@ export class PopupWithImage extends Popup {
   }
 
   open(textImage, linkImage) {
-    super.setEventListeners();
+    super.open();
 
-    this._popupSelector.classList.add("popup_opened");
     const imageScale = this._popupSelector.querySelector(".popup__image-scale");
     const imageText = this._popupSelector.querySelector(".popup__image-text");
     imageScale.src = linkImage;
     imageText.textContent = textImage;
-
-    document.addEventListener("keydown", this._handleEscClose);
   }
 }
