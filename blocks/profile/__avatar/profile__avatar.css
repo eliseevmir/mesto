@@ -1,6 +1,33 @@
 .profile__avatar {
-  max-width: 120px;
-  max-height: 120px;
+  position: relative;
+  background-image: url(../../../image/Бенз.png);
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background-repeat: no-repeat;
+  background-color: #000000;
+  background-position: center;
 }
 
+.profile__avatar::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: url(../../../image/Avatar_edit.png);
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-repeat: no-repeat;
+    background-color: #000000;
+    background-position: center;
+    opacity: 0;
+    transition: opacity ease 0.3s;
+}
+
+.profile__avatar:hover::before {
+  opacity: 0.8;
+}
