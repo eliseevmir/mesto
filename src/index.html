@@ -23,6 +23,7 @@
               alt="Аватар"
               class="profile__avatar"
             />
+            <button class="profile__avatar-btn"></button>
             <div class="profile__info">
               <h1 class="profile__title">Карл Бенц</h1>
               <button class="profile__button-create"></button>
@@ -116,6 +117,40 @@
         <div class="popup__image">
           <img src="#" alt="#" class="popup__image-scale" />
           <p class="popup__image-text"></p>
+          <button class="popup__close"></button>
+        </div>
+      </div>
+      <!-- Попап удаление карточки -->
+      <div class="popup popup_delete-card">
+        <div class="popup__container">
+          <h2 class="popup__title">Вы уверены?</h2>
+          <button class="popup__button">Да</button>
+          <button class="popup__close"></button>
+        </div>
+      </div>
+      <!-- Попап редактирования аватара -->
+      <div class="popup popup_create-avatar">
+        <div class="popup__container">
+          <h2 class="popup__title">Обновить аватар</h2>
+          <form
+            action="#"
+            name="avatar"
+            class="popup__form popup__form-avatar"
+            novalidate
+          >
+            <input
+              type="text"
+              name="avatar-info"
+              placeholder="Введите адрес изображения"
+              class="popup__input"
+              id="avatar-info"
+              minlength="2"
+              maxlength="200"
+              required
+            />
+            <span class="popup__error input-info-error"></span>
+            <button class="popup__button" type="submit">Сохранить</button>
+          </form>
           <button class="popup__close"></button>
         </div>
       </div>

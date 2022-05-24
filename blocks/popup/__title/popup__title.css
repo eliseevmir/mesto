@@ -7,6 +7,7 @@
   line-height: 29px;
   margin: 0;
   max-width: 330px;
+  max-height: 25px;
 }
 
 @media screen and (max-width: 559px) {

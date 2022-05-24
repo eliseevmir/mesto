@@ -10,5 +10,6 @@
   .profile__info {
     margin: 0;
     padding-top: 26px;
+    gap: 12px 10px;
   }
 }
