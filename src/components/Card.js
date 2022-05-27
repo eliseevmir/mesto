@@ -39,22 +39,6 @@ export class Card {
     this._likeBtn.classList.toggle("cards__like_active");
   }
 
-  _checkLike() {
-    if (this._likes.some((user) => user._id === this._userId)) {
-      this._deleteLikeCard(this._cardId).then((res) => {
-        this._likes = res.likes;
-        this._toggleLike();
-        this._numberLike.textContent = res.likes.length;
-      });
-    } else {
-      this._addLikeCard(this._cardId).then((res) => {
-        this._likes = res.likes;
-        this._toggleLike();
-        this._numberLike.textContent = res.likes.length;
-      });
-    }
-  }
-
   _setEventListener() {
     this._deleteCardBtn = this._elementCard.querySelector(".cards__trash");
 
@@ -73,7 +57,7 @@ export class Card {
     }
 
     this._likeBtn.addEventListener("click", () => {
-      this._handleLikeClick();
+      this._handleLikeClick(this);
     });
 
     this._cardImage.addEventListener("click", () => {
@@ -97,33 +81,3 @@ export class Card {
     return this._elementCard;
   }
 }
-
-//  _likeToggler() {
-//     if (!this._likeButton.classList.contains("elements__like-button_active")) {
-//       this._addCardLike(this._cardId)
-//         .then((res) => {
-//           this._data = res;
-//           this._likeCounter.textContent = res.likes.length;
-//           this._likeButton.classList.add("heartbeat");
-//           this._likeButton.classList.add("elements__like-button_active");
-//         })
-//         .catch((err) => console.log(err));
-//     } else {
-//       this._deleteCardLike(this._cardId)
-//         .then((res) => {
-//           this._data = res;
-//           this._likeCounter.textContent = res.likes.length;
-//           this._likeButton.classList.remove("heartbeat");
-//           this._likeButton.classList.remove("elements__like-button_active");
-//         })
-//         .catch((err) => console.log(err));
-//     }
-//   }
-
-//   _setIsLiked() {
-//     //* Условие будет true если в массиве лайков найдется лайк с id пользователя
-//     if (this._data.likes.some(elem => elem._id === this._userId)) {
-//       this._likeButton.classList.add("elements__like-button_active");
-//       this._likeButton.classList.add("heartbeat");
-//     }
-//   }

@@ -154,8 +154,20 @@ Promise.all([api.getInitialCards(), api.getUserInfo()])
             popupScaleImage.open(textImage, linkImage);
           },
 
-          handleLikeClick: () => {
-            cardElement._checkLike();
+          handleLikeClick: (cont) => {
+            if (cont._likes.some((user) => user._id === cont._userId)) {
+              cont._deleteLikeCard(cont._cardId).then((res) => {
+                cont._likes = res.likes;
+                cont._toggleLike();
+                cont._numberLike.textContent = res.likes.length;
+              });
+            } else {
+              cont._addLikeCard(cont._cardId).then((res) => {
+                cont._likes = res.likes;
+                cont._toggleLike();
+                cont._numberLike.textContent = res.likes.length;
+              });
+            }
           },
 
           handleDeleteIconClick: (cardId) => {

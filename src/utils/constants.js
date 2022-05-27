@@ -16,7 +16,7 @@ export const addCardsBtn = document.querySelector(".profile__button-add");
 export const popupImage = document.querySelector(".popup_image");
 export const formName = document.querySelector(".profile__title");
 export const formInfo = document.querySelector(".profile__subtitle");
-export const userAvatarBtn = document.querySelector(".profile__avatar")
+export const userAvatarBtn = document.querySelector(".profile__avatar");
 export const popupCreateProfile = document.querySelector(
   ".popup_create-profile"
 );
