@@ -18,16 +18,11 @@
       <main>
         <section class="profile">
           <div class="profile__item">
-            <!-- <img
-              src="<%=require('../image/Бенз.png')%>"
-              alt="Аватар"
-              class="profile__avatar"
-            /> -->
             <button class="profile__avatar"></button>
             <div class="profile__info">
-              <h1 class="profile__title">Карл Бенц</h1>
+              <h1 class="profile__title"></h1>
               <button class="profile__button-create"></button>
-              <p class="profile__subtitle">Инженер-изобретатель</p>
+              <p class="profile__subtitle"></p>
             </div>
           </div>
           <button class="profile__button-add"></button>
@@ -139,7 +134,7 @@
             novalidate
           >
             <input
-              type="text"
+              type="url"
               name="avatar-info"
               placeholder="Введите адрес изображения"
               class="popup__input"
@@ -148,7 +143,7 @@
               maxlength="200"
               required
             />
-            <span class="popup__error input-info-error"></span>
+            <span class="popup__error avatar-info-error"></span>
             <button class="popup__button" type="submit">Сохранить</button>
           </form>
           <button class="popup__close"></button>
@@ -160,7 +155,10 @@
           <img src="#" alt="#" class="cards__image" />
           <div class="cards__description">
             <h2 class="cards__text"></h2>
-            <button class="cards__like"></button>
+            <div class="cards__info">
+              <button class="cards__like"></button>
+              <span class="cards__like-number"></span>
+            </div>
           </div>
           <button class="cards__trash"></button>
         </li>
