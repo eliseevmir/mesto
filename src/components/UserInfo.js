@@ -1,7 +1,8 @@
 export class UserInfo {
-  constructor({ userName, userInfo }) {
+  constructor({ userName, userInfo, userAvatar}) {
     this._userName = userName;
     this._userInfo = userInfo;
+    this._userAvatar = userAvatar
   }
 
   getUserInfo() {

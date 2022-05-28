@@ -3,8 +3,8 @@ import { FormValidator } from "./components/FormValidator.js";
 import { Section } from "./components/Sections.js";
 import { PopupWithImage } from "./components/PopupWithImage.js";
 import { PopupWithForm } from "./components/PopupWithForm.js";
-import { PopupWithAvatar } from "./components/PopupWithAvatar.js";
 import { UserInfo } from "./components/UserInfo.js";
+import { PopupWithDeleteCard } from "./components/PopupWithDeleteCard.js";
 import {
   validSet,
   formValidators,
@@ -59,13 +59,14 @@ Promise.all([api.getInitialCards(), api.getUserInfo()])
     const userProfileCard = new UserInfo({
       userName: formName,
       userInfo: formInfo,
+      userAvatar: userAvatarBtn,
     });
 
     const addNewCardPopup = new PopupWithForm(popupCardsAdd, (event) => {
       event.preventDefault();
       loadingData(event, "Создание...");
 
-      const dataCard = addNewCardPopup._getInputValues();
+      const dataCard = addNewCardPopup.getInputValues();
       const cardInfo = {
         name: dataCard["title-card"],
         link: dataCard["link-card"],
@@ -77,13 +78,13 @@ Promise.all([api.getInitialCards(), api.getUserInfo()])
         .then((res) => {
           const cardElement = createCard(res, ".template__cards", dataUser);
           cards.prepend(cardElement);
+          addNewCardPopup.close();
         })
         .catch((err) => console.log(err))
         .finally(() => loadingData(event, "Создать"));
-
-      event.target.reset();
-      addNewCardPopup.close();
     });
+
+    addNewCardPopup.setEventListeners();
 
     const createProfilePopup = new PopupWithForm(
       popupCreateProfile,
@@ -91,34 +92,34 @@ Promise.all([api.getInitialCards(), api.getUserInfo()])
         event.preventDefault();
         loadingData(event, "Сохранение...");
 
-        const dataForm = createProfilePopup._getInputValues();
+        const dataForm = createProfilePopup.getInputValues();
         userProfileCard.setUserInfo(dataForm);
         api
           .editDataProfile(dataForm)
+          .then(() => createProfilePopup.close())
           .catch((err) => console.log(err))
           .finally(() => loadingData(event, "Сохранить"));
-
-        event.target.reset();
-        createProfilePopup.close();
       }
     );
 
-    const popupAvatar = new PopupWithAvatar(popupEditAvatar, (event) => {
+    createProfilePopup.setEventListeners();
+
+    const popupAvatar = new PopupWithForm(popupEditAvatar, (event) => {
       event.preventDefault();
       loadingData(event, "Сохранение...");
 
-      const urlAvatar = popupAvatar._getInputValues();
+      const urlAvatar = popupAvatar.getInputValues();
       api
-        .changeAvatarProfile(urlAvatar)
+        .changeAvatarProfile(urlAvatar["avatar-info"])
         .then((res) => {
           userAvatarBtn.style.backgroundImage = `url(${res.avatar})`;
+          popupAvatar.close();
         })
         .catch((err) => console.log(err))
         .finally(() => loadingData(event, "Сохранить"));
-
-      event.target.reset();
-      popupAvatar.close();
     });
+
+    popupAvatar.setEventListeners();
 
     function addLikeCard(cardId) {
       return api.addLikeCard(cardId);
@@ -171,15 +172,22 @@ Promise.all([api.getInitialCards(), api.getUserInfo()])
           },
 
           handleDeleteIconClick: (cardId) => {
-            const popupDelete = new Popup(popupDeleteCard);
-            popupDelete.open();
-            const buttonPopup = popupDeleteCard.querySelector(".popup__button");
-            buttonPopup.addEventListener("click", () => {
-              api.deleteCard(cardId).catch((err) => console.log(err));
+            const popupDelete = new PopupWithDeleteCard(
+              popupDeleteCard,
+              (event) => {
+                event.preventDefault();
 
-              cardElement._deleteCard();
-              popupDelete.close();
-            });
+                api
+                  .deleteCard(cardId)
+                  .then(() => {
+                    cardElement._deleteCard();
+                    popupDelete.close();
+                  })
+                  .catch((err) => console.log(err));
+              }
+            );
+
+            popupDelete.open();
           },
         },
 

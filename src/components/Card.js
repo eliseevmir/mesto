@@ -46,7 +46,7 @@ export class Card {
       this._elementCard.querySelector(".cards__trash").remove();
     }
 
-    this._deleteCardBtn.addEventListener("click", () => {
+    this._deleteCardBtn.addEventListener("click", (event) => {
       this._handleDeleteIconClick(this._cardId);
     });
 

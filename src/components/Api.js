@@ -4,6 +4,10 @@ export class Api {
     this._headers = headers;
   }
 
+  _checkResponse(res) {
+    return Promise.reject(`Ошибка: ${res.status}`);
+  }
+
   getInitialCards() {
     return fetch(`${this._baseUrl}cards`, {
       headers: this._headers,
@@ -20,7 +24,7 @@ export class Api {
     }).then((res) => {
       if (res.ok) return res.json();
 
-      return Promise.reject(`Ошибка: ${res.status}`);
+      this._checkResponse(res);
     });
   }
 
@@ -31,7 +35,7 @@ export class Api {
     }).then((res) => {
       if (res.ok) return res.json();
 
-      return Promise.reject(`Ошибка: ${res.status}`);
+      this._checkResponse(res);
     });
   }
 
@@ -42,7 +46,7 @@ export class Api {
     }).then((res) => {
       if (res.ok) return res.json();
 
-      return Promise.reject(`Ошибка: ${res.status}`);
+      this._checkResponse(res);
     });
   }
 
@@ -53,7 +57,7 @@ export class Api {
     }).then((res) => {
       if (res.ok) return res.json();
 
-      return Promise.reject(`Ошибка: ${res.status}`);
+      this._checkResponse(res);
     });
   }
 
@@ -67,7 +71,7 @@ export class Api {
     }).then((res) => {
       if (res.ok) return res.json();
 
-      return Promise.reject(`Ошибка: ${res.status}`);
+      this._checkResponse(res);
     });
   }
 
@@ -82,7 +86,7 @@ export class Api {
     }).then((res) => {
       if (res.ok) return res.json();
 
-      return Promise.reject(`Ошибка: ${res.status}`);
+      this._checkResponse(res);
     });
   }
 
@@ -97,7 +101,7 @@ export class Api {
     }).then((res) => {
       if (res.ok) return res.json();
 
-      return Promise.reject(`Ошибка: ${res.status}`);
+      this._checkResponse(res);
     });
   }
 }
