@@ -14,8 +14,10 @@ export const createProfileBtn = document.querySelector(
 );
 export const addCardsBtn = document.querySelector(".profile__button-add");
 export const popupImage = document.querySelector(".popup_image");
-export const formName = document.querySelector(".profile__title");
-export const formInfo = document.querySelector(".profile__subtitle");
+export const popupImageScale = document.querySelector(".popup__image-scale");
+export const popupImageText = document.querySelector(".popup__image-text");
+export const profileName = document.querySelector(".profile__title");
+export const profileInfo = document.querySelector(".profile__subtitle");
 export const userAvatarBtn = document.querySelector(".profile__avatar");
 
 export const popupCreateProfile = document.querySelector(

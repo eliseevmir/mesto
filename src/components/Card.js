@@ -13,14 +13,13 @@ export class Card {
     this._handleLikeClick = handleLikeClick;
     this._handleDeleteIconClick = handleDeleteIconClick;
 
-    this._deleteLikeCard = deleteLikeCard;
-    this._addLikeCard = addLikeCard;
+    this.deleteLikeCard = deleteLikeCard;
+    this.addLikeCard = addLikeCard;
 
-    this._data = data;
-    this._likes = data.likes;
-    this._cardOwnerId = data.owner._id;
-    this._cardId = data._id;
-    this._userId = dataUser._id;
+    this.likes = data.likes;
+    this.cardOwnerId = data.owner._id;
+    this.cardId = data._id;
+    this.userId = dataUser._id;
   }
 
   _getCardElement() {
@@ -31,28 +30,28 @@ export class Card {
     return cardsItem;
   }
 
-  _deleteCard() {
+  deleteCard() {
     this._elementCard.remove();
   }
 
-  _toggleLike() {
+  toggleLike() {
     this._likeBtn.classList.toggle("cards__like_active");
   }
 
   _setEventListener() {
     this._deleteCardBtn = this._elementCard.querySelector(".cards__trash");
 
-    if (this._cardOwnerId !== this._userId) {
+    if (this.cardOwnerId !== this.userId) {
       this._elementCard.querySelector(".cards__trash").remove();
     }
 
-    this._deleteCardBtn.addEventListener("click", (event) => {
-      this._handleDeleteIconClick(this._cardId);
+    this._deleteCardBtn.addEventListener("click", () => {
+      this._handleDeleteIconClick(this);
     });
 
     this._likeBtn = this._elementCard.querySelector(".cards__like");
 
-    if (this._likes.some((user) => user._id === this._userId)) {
+    if (this.likes.some((user) => user._id === this.userId)) {
       this._likeBtn.classList.add("cards__like_active");
     }
 
@@ -69,8 +68,8 @@ export class Card {
     this._elementCard = this._getCardElement();
     this._cardImage = this._elementCard.querySelector(".cards__image");
 
-    this._numberLike = this._elementCard.querySelector(".cards__like-number");
-    this._numberLike.textContent = this._likes.length;
+    this.numberLike = this._elementCard.querySelector(".cards__like-number");
+    this.numberLike.textContent = this.likes.length;
 
     this._setEventListener();
 

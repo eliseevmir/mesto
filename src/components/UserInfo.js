@@ -1,19 +1,33 @@
 export class UserInfo {
-  constructor({ userName, userInfo, userAvatar}) {
-    this._userName = userName;
-    this._userInfo = userInfo;
-    this._userAvatar = userAvatar
+  constructor(
+    { name, about, avatar, _id },
+    profileName,
+    profileInfo,
+    userAvatar
+  ) {
+    this.name = name;
+    this.about = about;
+    this.avatar = avatar;
+    this._id = _id;
+    this.profileName = profileName;
+    this.profileInfo = profileInfo;
+    this.userAvatar = userAvatar;
   }
 
   getUserInfo() {
-    return (this.userData = {
-      name: this._userName.textContent,
-      info: this._userInfo.textContent,
-    });
+    return {
+      name: this.name,
+      about: this.about,
+    };
   }
 
-  setUserInfo({ ["user-name"]: userName, ["user-info"]: userInfo }) {
-    this._userName.textContent = userName;
-    this._userInfo.textContent = userInfo;
+  setUserInfo({ name, about, avatar, _id }) {
+    this.name = name;
+    this.about = about;
+    this.avatar = avatar;
+    this._id = _id;
+    this.profileName.textContent = name;
+    this.profileInfo.textContent = about;
+    this.userAvatar.style.backgroundImage = `url(${this.avatar})`;
   }
 }

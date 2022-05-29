@@ -5,60 +5,42 @@ export class Api {
   }
 
   _checkResponse(res) {
+    if (res.ok) return res.json();
+
     return Promise.reject(`Ошибка: ${res.status}`);
   }
 
   getInitialCards() {
     return fetch(`${this._baseUrl}cards`, {
       headers: this._headers,
-    }).then((res) => {
-      if (res.ok) return res.json();
-
-      return Promise.reject(`Ошибка: ${res.status}`);
-    });
+    }).then(this._checkResponse);
   }
 
   getUserInfo() {
     return fetch(`${this._baseUrl}users/me`, {
       headers: this._headers,
-    }).then((res) => {
-      if (res.ok) return res.json();
-
-      this._checkResponse(res);
-    });
+    }).then(this._checkResponse);
   }
 
   deleteCard(cardId) {
     return fetch(`${this._baseUrl}cards/${cardId}`, {
       method: "DELETE",
       headers: this._headers,
-    }).then((res) => {
-      if (res.ok) return res.json();
-
-      this._checkResponse(res);
-    });
+    }).then(this._checkResponse);
   }
 
   addLikeCard(cardId) {
     return fetch(`${this._baseUrl}cards/${cardId}/likes`, {
       method: "PUT",
       headers: this._headers,
-    }).then((res) => {
-      if (res.ok) return res.json();
-
-      this._checkResponse(res);
-    });
+    }).then(this._checkResponse);
   }
 
   deleteLikeCard(cardId) {
     return fetch(`${this._baseUrl}cards/${cardId}/likes`, {
       method: "DELETE",
       headers: this._headers,
-    }).then((res) => {
-      if (res.ok) return res.json();
-
-      this._checkResponse(res);
-    });
+    }).then(this._checkResponse);
   }
 
   changeAvatarProfile(urlAvatar) {
@@ -68,11 +50,7 @@ export class Api {
       body: JSON.stringify({
         avatar: urlAvatar,
       }),
-    }).then((res) => {
-      if (res.ok) return res.json();
-
-      this._checkResponse(res);
-    });
+    }).then(this._checkResponse);
   }
 
   editDataProfile({ ["user-name"]: name, ["user-info"]: about }) {
@@ -83,11 +61,7 @@ export class Api {
         name: name,
         about: about,
       }),
-    }).then((res) => {
-      if (res.ok) return res.json();
-
-      this._checkResponse(res);
-    });
+    }).then(this._checkResponse);
   }
 
   cardsPage(name, link) {
@@ -98,10 +72,6 @@ export class Api {
         name: name,
         link: link,
       }),
-    }).then((res) => {
-      if (res.ok) return res.json();
-
-      this._checkResponse(res);
-    });
+    }).then(this._checkResponse);
   }
 }
