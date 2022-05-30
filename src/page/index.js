@@ -57,9 +57,7 @@ Promise.all([api.getInitialCards(), api.getUserInfo()])
       userAvatarBtn
     );
 
-    profileName.textContent = userProfileCard.name;
-    profileInfo.textContent = userProfileCard.about;
-    userAvatarBtn.style.backgroundImage = `url(${userProfileCard.avatar})`;
+    userProfileCard.setUserInfo(dataUser);
 
     const popupScaleImage = new PopupWithImage(
       popupImage,
@@ -179,18 +177,14 @@ Promise.all([api.getInitialCards(), api.getUserInfo()])
               card
                 .deleteLikeCard(card.cardId)
                 .then((res) => {
-                  card.likes = res.likes;
-                  card.toggleLike();
-                  card.numberLike.textContent = res.likes.length;
+                  card.updateLikes(res);
                 })
                 .catch((err) => console.log(err));
             } else {
               card
                 .addLikeCard(card.cardId)
                 .then((res) => {
-                  card.likes = res.likes;
-                  card.toggleLike();
-                  card.numberLike.textContent = res.likes.length;
+                  card.updateLikes(res);
                 })
                 .catch((err) => console.log(err));
             }

@@ -30,11 +30,7 @@ export class Card {
     return cardsItem;
   }
 
-  deleteCard() {
-    this._elementCard.remove();
-  }
-
-  toggleLike() {
+  _toggleLike() {
     this._likeBtn.classList.toggle("cards__like_active");
   }
 
@@ -64,12 +60,22 @@ export class Card {
     });
   }
 
+  deleteCard() {
+    this._elementCard.remove();
+  }
+
+  updateLikes(res) {
+    this.likes = res.likes;
+    this._toggleLike();
+    this._numberLike.textContent = res.likes.length;
+  }
+
   generateCard() {
     this._elementCard = this._getCardElement();
     this._cardImage = this._elementCard.querySelector(".cards__image");
 
-    this.numberLike = this._elementCard.querySelector(".cards__like-number");
-    this.numberLike.textContent = this.likes.length;
+    this._numberLike = this._elementCard.querySelector(".cards__like-number");
+    this._numberLike.textContent = this.likes.length;
 
     this._setEventListener();
 
